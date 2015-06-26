@@ -1,0 +1,8 @@
+{
+  "name": "webchat",
+  "version": "0.0.1",
+  "description": "A system that allows users to communicate in real time using socket.io",
+  "dependencies": {
+    "express": "^4.10.2"
+  }
+}
