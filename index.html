@@ -38,12 +38,38 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 pages">
             <div class="panel panel-default">
                 <div class="panel-heading">Webchat</div>
                 <div class="panel-body">
                     <ul id="messages"></ul>
                 </div>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Nodejs Webchat</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="login page">
+                                    <div class="form">
+                                        <h3 class="title">What's your nickname?</h3>
+                                        <input class="usernameInput form-control" type="text" maxlength="14" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Modal -->
                 <div class="panel-footer">
                     <form action="">
                         <div class="input-group">
@@ -74,6 +100,7 @@
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="main.js"></script>
 
 <script>
     var socket = io();
@@ -82,10 +109,12 @@
         $('#message').val('');
         return false;
     });
+    // Modal
+    socket.on('connect', function(){
+        $('#myModal').modal('show');
+    });
     // Capture a chat message event and include it in the page
     socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
-
         // Add function that trigger the div container for the messages to auto-scroll
         $("#messages").animate({
             scrollTop: $("#messages")[0].scrollHeight
