@@ -16,6 +16,7 @@ $(function() {
   var $chatPage = $('.chat.page'); // The chatroom page
 
   // Prompt for setting a username
+
   var username;
   var connected = false;
   var typing = false;
@@ -27,9 +28,9 @@ $(function() {
   function addParticipantsMessage (data) {
     var message = '';
     if (data.numUsers === 1) {
-      message += "there's 1 participant";
+      message += "1 user online...";
     } else {
-      message += "there are " + data.numUsers + " participants";
+      message += "there are " + data.numUsers + " users online...";
     }
     log(message);
   }
@@ -229,7 +230,7 @@ $(function() {
   socket.on('login', function (data) {
     connected = true;
     // Display the welcome message
-    var message = "Welcome to Socket.IO Chat – ";
+    var message = "Welcome " + username;
     log(message, {
       prepend: true
     });
@@ -243,6 +244,7 @@ $(function() {
 
   // Whenever the server emits 'user joined', log it in the chat body
   socket.on('user joined', function (data) {
+    $('#userCount').val(numUsers);
     log(data.username + ' joined');
     addParticipantsMessage(data);
   });
