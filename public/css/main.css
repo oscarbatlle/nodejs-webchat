@@ -1,3 +1,19 @@
 body {
     padding-top: 70px;
 }
+
+#messages {
+    height: 350px;
+    overflow-y: scroll;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#messages li {
+    padding: 5px 10px;
+}
+
+#message.typing .messageBody {
+    color: gray;
+}
