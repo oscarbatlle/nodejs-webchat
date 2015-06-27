@@ -8,6 +8,9 @@ app.get('/', function(request, response){
 
 io.on('connection', function(socket){
     console.log('User connected');
+    socket.on('disconnect', function(){
+        console.log('user disconnected');
+    });
 });
 
 http.listen(8888, function(){
