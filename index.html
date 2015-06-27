@@ -85,7 +85,13 @@
     // Capture a chat message event and include it in the page
     socket.on('chat message', function(msg){
         $('#messages').append($('<li>').text(msg));
+
+        // Add function that trigger the div container for the messages to auto-scroll
+        $("#messages").animate({
+            scrollTop: $("#messages")[0].scrollHeight
+        });
     });
+
 </script>
 </body>
 </html>
